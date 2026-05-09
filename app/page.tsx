@@ -8,8 +8,17 @@ export default function Home() {
     <main className="home-scroll-shell" aria-label="Mariia Khoziainova photography projects">
       <HeroTitle />
       <HorizontalScroll>
-        {projects.map((project, index) => (
-          <ProjectCard key={project.slug} project={project} priority={index < 2} />
+        {[0, 1].map((loopIndex) => (
+          <div className="horizontal-loop-set" key={loopIndex}>
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={`${loopIndex}-${project.slug}`}
+                project={project}
+                priority={loopIndex === 0 && index < 3}
+                isClone={loopIndex > 0}
+              />
+            ))}
+          </div>
         ))}
       </HorizontalScroll>
       <div className="site-title-lockup" aria-hidden="true">

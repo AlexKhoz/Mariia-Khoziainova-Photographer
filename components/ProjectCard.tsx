@@ -8,9 +8,11 @@ import type { Project } from "@/lib/projects";
 export default function ProjectCard({
   project,
   priority = false,
+  isClone = false,
 }: {
   project: Project;
   priority?: boolean;
+  isClone?: boolean;
 }) {
   const router = useRouter();
 
@@ -30,7 +32,7 @@ export default function ProjectCard({
     >
       <motion.div
         className="project-card__image"
-        layoutId={`project-${project.slug}`}
+        layoutId={isClone ? undefined : `project-${project.slug}`}
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
@@ -39,34 +41,9 @@ export default function ProjectCard({
           alt={project.title}
           fill
           priority={priority}
-          sizes="100vw"
+          sizes="(max-width: 760px) 82vw, 32vw"
           style={{ objectFit: "cover" }}
         />
-      </motion.div>
-      <div className="project-card__shade" />
-      <motion.div
-        className="project-card__caption"
-        initial={false}
-        whileHover="hover"
-      >
-        <motion.h2
-          className="project-card__title"
-          initial={{ opacity: 0.82, y: 18 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-        >
-          {project.title}
-        </motion.h2>
-        <motion.p
-          className="project-card__meta"
-          initial={{ opacity: 0, y: 18 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-        >
-          {project.year}
-          <br />
-          {project.description}
-        </motion.p>
       </motion.div>
     </article>
   );
