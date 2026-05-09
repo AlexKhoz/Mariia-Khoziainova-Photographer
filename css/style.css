@@ -1,0 +1,123 @@
+html, body {
+    /*cursor: none; /* Hide default system cursor */
+}
+
+/* Custom Cursor (Basic) */
+.custom-cursor {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(12, 25, 69);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+}
+  
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.slabtexted .slabtext
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.slabtextinactive .slabtext
+{
+    display: inline;
+    white-space: normal;
+    font-size: 1em !important;
+    letter-spacing: inherit !important;
+    word-spacing: inherit !important;
+    *letter-spacing: normal !important;
+    *word-spacing: normal !important;
+}
+
+.slabtextdone .slabtext
+{
+    display: block;
+}
+
+.text-container {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    z-index: 10;
+}
+
+.text-container h1 {
+    font-family: 'Bon Vivant Family Serif', serif;
+    color: #253551;
+    text-align: center;
+    font-size: clamp(2rem, 8vw, 6rem);
+    line-height: 1;
+    margin: 0;
+    white-space: nowrap;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* Style for slabText spans */
+.slabtext {
+    display: inline-block;
+    transform-origin: bottom;
+}
+
+.text-container p {
+    font-family: 'Bon Vivant Family Script', serif;
+    color: #0C1945;
+    /* Set font size relative to h1 using calc() */
+    font-size: calc(clamp(15rem, 20vw, 30rem) * 0.2); /* This makes it 20% of h1 size */
+    line-height: 0.01;
+    text-align: right;
+    margin-right: 5rem;
+    position: relative;
+    top: -0.8em; /* Use em units to maintain proportional spacing */
+}
+
+.gallery-container {
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start; /* Change from center to flex-start */
+    justify-content: center;
+    padding-top: 2vh; /* Optional: Remove any top padding if needed */
+    z-index: 1;
+    margin: 0px 0px 60px 0px;
+    cursor: grab;
+    user-select: none;
+}
+
+.gallery-container:active {
+    cursor: grabbing;
+  }
+
+
+.gallery {
+    display: flex;
+    will-change: transform;
+    gap: 1rem;
+}
+
+.gallery-item {
+    flex: 0 0 30vw;
+    height: 70vh;
+    background-color: #ccc;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

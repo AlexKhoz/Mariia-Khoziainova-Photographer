@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariia Khoziainova - Photographer</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Load jQuery first -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Then load slabText -->
+  <script src="js/jquery.slabtext.js"></script>
+</head>
+<body>
+  <!-- Basic custom cursor element -->
+  <div id="custom-cursor" class="custom-cursor"></div>
+  
+  <div class="gallery-container">
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="photos/image 1.jpg" alt="Image 1" class="grabbable">
+      </div>
+      <div class="gallery-item">
+        <img src="photos/image 2.jpg" alt="Image 2" class="grabbable">
+      </div>
+      <div class="gallery-item">
+        <img src="photos/image 3.jpg" alt="Image 3" class="grabbable">
+      </div>
+      <div class="gallery-item">
+        <img src="photos/image 4.jpg" alt="Image 4" class="grabbable">
+      </div>
+      <div class="gallery-item">
+        <img src="photos/image 5.jpg" alt="Image 5" class="grabbable">
+      </div>
+      <div class="gallery-item">
+        <img src="photos/image 6.jpg" alt="Image 6" class="grabbable">
+      </div>
+    </div>
+  </div>
+      
+  <div class="text-container">
+    <h1>MARIIA&nbsp;KHOZIAINOVA</h1>
+    <p>photographer</p>
+  </div>
+
+  <!-- GSAP scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+  
+  <!-- Lottie animation library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+  
+  <!-- Main scripts -->
+  <script src="js/main.js"></script>
+  
+  <!-- SlabText initialization with animation -->
+  <script>
+    $(document).ready(function() {
+      // Add the slabtexted class to body
+      $('body').addClass('slabtexted');
+
+      // Initialize slabText with custom settings
+      $('.text-container h1').slabText({
+        fontRatio: 0.3,
+        postTweak: true,
+        onRender: function() {
+          const spans = $('.slabtext');
+          gsap.set(spans, {
+            yPercent: 100,
+            opacity: 0
+          });
+          gsap.to(spans, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.05,
+            ease: "power4.out"
+          });
+        }
+      });
+    });
+  </script>
+  
+  <!-- Custom Cursor Scripts 
+  <script>
+// Load the JSON animation into the Lottie cursor element
+var cursorAnimation = lottie.loadAnimation({
+  container: document.getElementById('lottie-cursor'),
+  renderer: 'svg',
+  loop: false, // Play only once
+  autoplay: false,
+  path: 'cursor.json'
+});
+
+// Select cursor elements
+const basicCursor = document.getElementById('custom-cursor');
+const lottieCursor = document.getElementById('lottie-cursor');
+
+// Update cursor position on mouse move
+document.addEventListener('mousemove', function (e) {
+  basicCursor.style.left = e.clientX + 'px';
+  basicCursor.style.top = e.clientY + 'px';
+  lottieCursor.style.left = e.clientX + 'px';
+  lottieCursor.style.top = e.clientY + 'px';
+});
+
+// Select all grabbable images
+const grabbableElements = document.querySelectorAll('.grabbable');
+
+grabbableElements.forEach((el) => {
+  el.addEventListener('mouseenter', function () {
+    console.log("Hovering over draggable image");
+    
+    // Hide the basic cursor completely
+    basicCursor.style.opacity = 0;
+    document.body.style.cursor = "none"; // Hide system cursor
+    
+    // Show the Lottie cursor and play animation forward
+    lottieCursor.style.opacity = 1;
+    cursorAnimation.setDirection(1); // Play forward
+    cursorAnimation.play();
+  });
+
+  el.addEventListener('mouseleave', function () {
+    console.log("Hovering off draggable image");
+    
+    // Play the animation in reverse
+    cursorAnimation.setDirection(-1); // Play backward
+    cursorAnimation.play();
+
+    // When animation finishes reversing, hide Lottie and restore cursor
+    cursorAnimation.addEventListener('complete', function () {
+      if (cursorAnimation.playDirection === -1) { // Only hide after reverse
+        lottieCursor.style.opacity = 0;
+        basicCursor.style.opacity = 1;
+      }
+    });
+  });
+});
+
+  </script>-->
+</body>
+</html>
